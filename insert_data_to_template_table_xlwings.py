@@ -5,6 +5,10 @@ import datetime as dt
 import shutil
 
 
+def run_type():
+    return input('Would you like to create a dateID-d template file in an Output folder (y/n)?: ')
+
+
 def open_csv_file(csv_file_path):
     """
     Open and read data from a csv file without headers (skipping the first row)
@@ -92,6 +96,11 @@ def create_date_id():
 
 
 def copy_rename_template_file(template_file):
+    """
+    Copy and rename the template file to 'Output' folder
+    :param template_file: template file path
+    :return: renamed template file path
+    """
 
     # Create a date id from today's date
     date_id = create_date_id()
@@ -116,5 +125,10 @@ if __name__ == '__main__':
     csv_file_path_input = 'IMDB-Movie-Data.csv'
 
     data_from_csv = open_csv_file(csv_file_path_input)
+
+    if run_type().upper() == 'Y':
+        check_output_folder()
+        template_file_input = copy_rename_template_file()
+
     write_list_to_excel(template_file_input, data_from_csv)
 
