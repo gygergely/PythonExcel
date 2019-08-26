@@ -106,7 +106,7 @@ def copy_rename_template_file(template_file):
     date_id = create_date_id()
 
     # Assign original template file name and new template file name to variables
-    new_file_name = 'Output/' + date_id + template_file
+    new_file_name = 'Output/' + date_id + '_' + template_file
     old_file_name = 'Output/' + template_file
 
     # Check if a file exists in the target directory with the new file name, if yes delete it
@@ -124,11 +124,10 @@ if __name__ == '__main__':
     template_file_input = 'xlwings_table_example.xlsx'
     csv_file_path_input = 'IMDB-Movie-Data.csv'
 
-    data_from_csv = open_csv_file(csv_file_path_input)
-
     if run_type().upper() == 'Y':
         check_output_folder()
-        template_file_input = copy_rename_template_file()
+        template_file_input = copy_rename_template_file(template_file_input)
 
+    data_from_csv = open_csv_file(csv_file_path_input)
     write_list_to_excel(template_file_input, data_from_csv)
 
