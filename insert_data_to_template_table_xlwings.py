@@ -1,5 +1,7 @@
 import csv
 import xlwings as xw
+import os
+import datetime as dt
 
 
 def open_csv_file(csv_file_path):
@@ -58,6 +60,34 @@ def write_list_to_excel(template_file, data_to_insert):
         template = "An exception of type {0} occurred. Arguments:\n{1!r}"
         message = template.format(type(ex).__name__, ex.args)
         print(message)
+
+
+def check_output_folder():
+    """
+    Checks if 'Output' folder exists, if not it creates one inside your project
+    :return: None
+    """
+    if not os.path.exists('Output'):
+        os.makedirs('Output')
+
+
+def create_date_id():
+    """
+    Creates a str dateID from today's date
+    :return: "YYYYMMDD' format str dateID
+    """
+    today_date = dt.datetime.today()
+    year = str(today_date.year)
+
+    month = str(today_date.month)
+    if len(month) == 1:
+        month = '0' + month
+
+    day = str(today_date.day)
+    if len(day) == 1:
+        day = '0' + day
+
+    return year+month+day
 
 
 if __name__ == '__main__':
