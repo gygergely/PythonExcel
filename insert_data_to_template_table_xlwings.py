@@ -2,6 +2,7 @@ import csv
 import xlwings as xw
 import os
 import datetime as dt
+import shutil
 
 
 def open_csv_file(csv_file_path):
@@ -88,6 +89,26 @@ def create_date_id():
         day = '0' + day
 
     return year+month+day
+
+
+def copy_rename_template_file(template_file):
+
+    # Create a date id from today's date
+    date_id = create_date_id()
+
+    # Assign original template file name and new template file name to variables
+    new_file_name = 'Output/' + date_id + template_file
+    old_file_name = 'Output/' + template_file
+
+    # Check if a file exists in the target directory with the new file name, if yes delete it
+    if os.path.isfile(new_file_name):
+        os.remove(new_file_name)
+
+    # Copy and rename original template file
+    shutil.copy(template_file, 'Output')
+    os.rename(old_file_name, new_file_name)
+
+    return new_file_name
 
 
 if __name__ == '__main__':
