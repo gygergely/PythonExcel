@@ -1,2 +1,2 @@
 # PythonExcel
-Excel and Python cooperation
+Excel and Python function collection
