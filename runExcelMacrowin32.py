@@ -26,5 +26,6 @@ def run_excel_macro (file_path, separator_char):
     xl.Application.Quit()
     del xl
 
+
 separator_char = os.sep
 run_excel_macro(input('Please enter Excel macro file path: '), separator_char)
