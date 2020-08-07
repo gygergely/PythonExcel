@@ -4,11 +4,11 @@ import pandas as pd
 
 def load_data_table_to_df(xl_file_name, sheet_name, table_name):
     """
-
-    :param xl_file_name:
-    :param sheet_name:
-    :param table_name:
-    :return:
+    Load an Excel data table content to a pandas dataframe
+    :param xl_file_name: Excel file path & name
+    :param sheet_name: sheet name where the data table(s) can be found
+    :param table_name: table name
+    :return: pandas dataframe or in case of error None
     """
     # Start invisible Excel
     xl_app = xw.App(visible=False, add_book=False)
@@ -61,9 +61,9 @@ def load_data_table_to_df(xl_file_name, sheet_name, table_name):
 
 if __name__ == '__main__':
 
-    df_test1 = load_data_table_to_df(r"C:\Users\gerge\Desktop\data_table_test.xlsx", 'test_datatbl_1', 'tbl_test_3')
-    df_test2 = load_data_table_to_df(r"C:\Users\gerge\Desktop\data_table_test.xlsx", 'test_datatbl_3', 'tbl_test_1')
-    df_test3 = load_data_table_to_df(r"C:\Users\gerge\Desktop\data_table_test.xlsx", 'test_datatbl_2', 'tbl_test_2')
+    df_test1 = load_data_table_to_df('data_tbl_test.xlsx', 'test_datatbl_1', 'tbl_test_3')
+    df_test2 = load_data_table_to_df('data_tbl_test.xlsx', 'test_datatbl_2', 'tbl_test_1')
+    df_test3 = load_data_table_to_df('data_tbl_test.xlsx', 'test_datatbl_2', 'tbl_test_2')
 
     if df_test1 is not None:
         print(df_test1.head())
