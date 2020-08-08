@@ -17,31 +17,22 @@ def load_data_table_to_df(xl_file_name, sheet_name, table_name):
     try:
         # Open source file
         wb = xl_app.books.open(xl_file_name)
-
         # Identify the sheet
         sh = wb.sheets[sheet_name]
-
         # Get the table by name
         data_tbl = sh.api.ListObjects(table_name)
-
         # Get the table range
         table_range = sh.range(data_tbl.range.address)
-
         # Load the table range values to a dataframe
         df = pd.DataFrame(table_range.value)
-
         # Grab the first row for the header
         df_header = df.iloc[0]
-
         # Get the data except the 1st row
         df = df[1:]
-
         # Set the 1st row as header
         df.columns = df_header
-
         # Reset df index
         df.reset_index(drop=True, inplace=True)
-
         # Close Excel
         wb.close()
         xl_app.quit()
